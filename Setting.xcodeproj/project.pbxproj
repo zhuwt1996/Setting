@@ -12,6 +12,7 @@
 		97AF3CA3234ED57C00ADC688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97AF3CA2234ED57C00ADC688 /* Assets.xcassets */; };
 		97AF3CA6234ED57C00ADC688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97AF3CA4234ED57C00ADC688 /* LaunchScreen.storyboard */; };
 		97AF3CAE234ED9CF00ADC688 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3CAD234ED9CF00ADC688 /* SettingViewController.swift */; };
+		97AF3CCA234F038200ADC688 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3CC9234F038200ADC688 /* SettingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		97AF3CA5234ED57C00ADC688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97AF3CA7234ED57C00ADC688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97AF3CAD234ED9CF00ADC688 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		97AF3CC9234F038200ADC688 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		97AF3C9A234ED57B00ADC688 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				97AF3CC8234F035B00ADC688 /* Cell */,
 				97AF3CB2234EDAEA00ADC688 /* Model */,
 				97AF3C9B234ED57B00ADC688 /* AppDelegate.swift */,
 				97AF3CB1234EDACE00ADC688 /* View */,
@@ -94,6 +97,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		97AF3CC8234F035B00ADC688 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				97AF3CC9234F038200ADC688 /* SettingTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97AF3CCA234F038200ADC688 /* SettingTableViewCell.swift in Sources */,
 				97AF3C9C234ED57B00ADC688 /* AppDelegate.swift in Sources */,
 				97AF3CAE234ED9CF00ADC688 /* SettingViewController.swift in Sources */,
 			);
