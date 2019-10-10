@@ -52,7 +52,8 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
             "关于本机",
             "网络和连接",
             "个人",
-            "系统和设备"
+            "系统和设备",
+            "应用设置和管理"
         ]
         //初始化数据
         self.dataSource =  [
@@ -86,6 +87,18 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 ["icon":"SOS","title":"SOS紧急求助"],
                 ["icon":"MIUI","title":"MIUI实验室"],
                 ["icon":"MoreSetting","title":"更多设置"]
+                ]),
+            4:[[String:String]]([
+                ["icon":"Mi","title":"小米账号"],
+                ["icon":"Syn","title":"同步"],
+                ["icon":"App","title":"系统应用设置"],
+                ["icon":"AppManage","title":"应用管理"],
+                ["icon":"DoubleApp","title":"应用双开"],
+                ["icon":"Manage","title":"授权管理"],
+                ["icon":"AppLock","title":"应用锁"],
+                ["icon":"UserBook","title":"用户手册"],
+                ["icon":"Ques","title":"问题反馈"],
+                ["icon":"Service","title":"小米服务"]
                 ])
         ]
         
@@ -137,6 +150,8 @@ extension SettingViewController{
         }
         //右侧箭头
         cell?.accessoryType = .disclosureIndicator
+        //点击灰色
+        cell?.selectionStyle = .blue
         
         var data = self.dataSource[indexPath.section]
         let dict = data![indexPath.row]
