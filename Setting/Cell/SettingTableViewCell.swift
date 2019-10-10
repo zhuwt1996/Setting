@@ -21,12 +21,12 @@ class SettingTableViewCell: UITableViewCell {
     }
     
     fileprivate func setupUI(){
-        titleLabel = UILabel(frame: CGRect(x: 74, y: 18, width: 100, height: 15))
+        titleLabel = UILabel(frame: CGRect(x: 75, y: 25, width: 150, height: 12))
         titleLabel.textColor = UIColor.black
         titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         titleLabel.textAlignment = .left
         
-        iconImv = UIImageView(frame: CGRect(x: 20, y: 15, width: 44, height: 44))
+        iconImv = UIImageView(frame: CGRect(x: 20, y: 12, width: 44, height: 40))
         iconImv.layer.masksToBounds = true
         iconImv.layer.cornerRadius = 22.0
         
