@@ -43,13 +43,16 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         navigationItem.hidesSearchBarWhenScrolling = false
         
         tableView = UITableView(frame: view.bounds, style: .grouped)
+        //解决最后一项无法显示的bug
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 120, right: 0)
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
         tableView.sectionFooterHeight = 0.0
         self.themeHeaders = [
             "关于本机",
             "网络和连接",
-            "个人"
+            "个人",
+            "系统和设备"
         ]
         //初始化数据
         self.dataSource =  [
@@ -68,7 +71,21 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
             2:[[String:String]]([
                 ["icon":"Apperance","title":"显示"],
                 ["icon":"WallPaper","title":"壁纸"],
-                ["icon":"Theme","title":"主题"]
+                ["icon":"Theme","title":"个性主题"],
+                ["icon":"Sound","title":"声音和振动"]
+                ]),
+            3:[[String:String]]([
+                ["icon":"Lock","title":"锁屏、密码和指纹"],
+                ["icon":"Noti","title":"通知和状态栏"],
+                ["icon":"Task","title":"桌面与最近任务"],
+                ["icon":"FullScreen","title":"全面屏"],
+                ["icon":"XiaoAi","title":"小爱同学"],
+                ["icon":"OtherPhone","title":"手机分身"],
+                ["icon":"Ele","title":"电量和性能"],
+                ["icon":"Save","title":"存储空间"],
+                ["icon":"SOS","title":"SOS紧急求助"],
+                ["icon":"MIUI","title":"MIUI实验室"],
+                ["icon":"MoreSetting","title":"更多设置"]
                 ])
         ]
         
@@ -77,17 +94,21 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
          view.addSubview(tableView)
     }
-
-
+    
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
+//        if #available(iOS 11.0, *) {
+//            navigationItem.hidesSearchBarWhenScrolling = false
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         //导航栏的背景颜色
         self.navigationController?.navigationBar.barTintColor = UIColor.white
-        
+//        if #available(iOS 11.0, *) {
+//            navigationItem.hidesSearchBarWhenScrolling = true
+//        }
         //消除横线
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -152,9 +173,4 @@ extension SettingViewController: UISearchResultsUpdating {
 //            return true
 //        }
     }
-}
-
-extension UINavigationController {
-    
-    
 }
