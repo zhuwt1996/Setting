@@ -8,11 +8,6 @@
 
 import UIKit
 
-
-let SCREEN_HEIGHT: CGFloat = UIScreen.main.bounds.height
-let SCREEN_WIDTH: CGFloat = UIScreen.main.bounds.width
-let SCALE_HEIGHT = SCREEN_HEIGHT / 667.0
-let SCALE_WIDTH = SCREEN_WIDTH / 375.0
 class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     // 搜索控制器
@@ -21,11 +16,9 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     //定义数据源,字典型数组
     var dataSource : Dictionary<Int,[SettingCell]>!
     //定义一个原始的cell数组
-    var originalArray = [SettingCell]()
-    //定义一个过滤的cell数组
+    var originalCells = [SettingCell]()
+    //定义一个过滤的cell数组,过滤后不需要按照section的方式展示，所以用cell数组即可
     var filteredCells = [SettingCell]()
-    //定义一个Dict数组，用于存放系统设置项，即Dictionary中的title和icon
-    var titleArray : [String]!
 
     //分组头标题
     var themeHeaders:[String]!
@@ -54,8 +47,12 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.searchController.obscuresBackgroundDuringPresentation = false
         
         self.searchController.searchBar.placeholder = "搜索系统设置项"
-        
-        self.navigationItem.searchController = self.searchController
+        if #available(iOS 11, *) {
+            // iOS 11必须用这种方式添加，否则会出各种意想不到的问题
+            self.navigationItem.searchController = self.searchController
+        } else {
+            self.tableView.tableHeaderView = self.searchController.searchBar
+        }
         navigationItem.hidesSearchBarWhenScrolling = false
         //确保当 UISearchController 为活跃状态时，用户导航到了新的 ViewController（如从搜索结果）， 搜索栏还在屏幕最上方。
         self.definesPresentationContext = true
@@ -124,7 +121,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         ]
         for (_,cells) in dataSource{
             for cell in cells{
-                self.originalArray.append(cell)
+                self.originalCells.append(cell)
             }
         }
 
@@ -137,6 +134,8 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        self.navigationController?.navigationBar.isHidden = false
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -146,6 +145,11 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         //消除横线
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        self.navigationController?.navigationBar.isHidden = true
     }
 }
 
@@ -182,11 +186,6 @@ extension SettingViewController{
         //点击灰色
         cell?.selectionStyle = .blue
         
-//        var data = self.dataSource[indexPath.section]
-//        let dict = data![indexPath.row]
-//        cell?.iconImv.image = UIImage(named: dict["icon"]!)
-//        cell?.titleLabel.text = dict["title"]
-        
         if isFiltering() {
             let cellModel = filteredCells[indexPath.row]
             cell?.iconImv.image = UIImage(named: cellModel.icon!)
@@ -199,9 +198,61 @@ extension SettingViewController{
         cell?.iconImv.image = UIImage(named: mysetting.icon!)
         cell?.titleLabel.text = mysetting.settingTitle
         return cell!
-        
-        
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row{
+            case 0:
+                //我的设备
+                self.navigationController?.pushViewController(MyDeciveViewController(), animated: false)
+            default:
+                return
+            }
+        case 1:
+            switch indexPath.row{
+            case 0:
+                //我的设备
+                break
+            default:
+                return
+            }
+        default:
+            return
+        }
+    }
+   
+}
+
+extension SettingViewController: UISearchResultsUpdating {
+    //实时进行搜索
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    //过滤出搜索项
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredCells = originalCells.filter({( myCell) -> Bool in
+            return myCell.settingTitle?.lowercased().contains(searchText.lowercased()) ?? false
+        })
+        
+        tableView.reloadData()
+    }
+    
+    //判断searchbar是否为空
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    //是否开启搜索
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+}
+
+//ui相关
+extension SettingViewController{
     
     // 设置cell高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -212,7 +263,7 @@ extension SettingViewController{
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.001
     }
-
+    
     //设置header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
@@ -231,31 +282,5 @@ extension SettingViewController{
             return 0.01
         }
         return 30
-    }
-}
-
-extension SettingViewController: UISearchResultsUpdating {
-    //实时进行搜索
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-    //过滤出搜索项
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredCells = originalArray.filter({( myCell) -> Bool in
-            return myCell.settingTitle?.lowercased().contains(searchText.lowercased()) ?? false
-        })
-        
-        tableView.reloadData()
-    }
-    
-    //判断searchbar是否为空
-    func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    //是否开启搜索
-    func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
     }
 }
