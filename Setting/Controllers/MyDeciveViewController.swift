@@ -12,8 +12,14 @@ class MyDeciveViewController: UIViewController,UICollectionViewDelegate,UICollec
    
     //定义数据源,字典型数组
     var deviceDataSource : [MyDeviceCell]!
-    var infoDataSource : [MyDeviceCell]!
+    var infoDataSource : [String]!
 
+    
+    fileprivate lazy var header: MyDeviceHeaderView = {
+        let view = MyDeviceHeaderView()
+        return view
+    }()
+    
     fileprivate lazy var layout: UICollectionViewLayout = {
         let layout = UICollectionViewFlowLayout()
         //垂直行距离
@@ -41,14 +47,17 @@ class MyDeciveViewController: UIViewController,UICollectionViewDelegate,UICollec
         return collectionView
     }()
     
-    fileprivate lazy var header: MyDeviceHeaderView = {
-        let view = MyDeviceHeaderView()
-        return view
-    }()
     
-    fileprivate lazy var header2: MyDeviceHeaderView = {
-        let view = MyDeviceHeaderView()
-        return view
+    fileprivate lazy var tableView: UITableView = {
+        let tableView = UITableView.init(frame: view.bounds,style: .plain)
+        //解决最后一项无法显示的bug
+//        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 120, right: 0)
+        tableView.separatorStyle = .none
+        tableView.sectionFooterHeight = 0.0
+        tableView.dataSource = self
+        tableView.delegate = self
+//        tableView.backgroundColor = UIColor.red
+        return tableView
     }()
     
     
@@ -67,6 +76,8 @@ class MyDeciveViewController: UIViewController,UICollectionViewDelegate,UICollec
                MyDeviceCell(deviceTitle: "分辨率", des: "2248*1080像素", icon: "FBL"),
                MyDeviceCell(deviceTitle: "运行内存", des: "6.00GB", icon: "YXNC")
             ]
+        
+        self.infoDataSource = ["手机型号","手机名称","机身储存","全部参数","小米商城","预置应用","法律信息","重要安全信息","认证信息"]
     }
     
     func setupUI(){
@@ -85,11 +96,11 @@ class MyDeciveViewController: UIViewController,UICollectionViewDelegate,UICollec
             make.left.right.equalToSuperview()
             make.height.equalTo(250 * SCALE_WIDTH)
         }
-        view.addSubview(header2)
-        header2.snp.makeConstraints { (make) in
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
             make.top.equalTo(collectionView.snp.bottom).offset(-1 * SCALE_WIDTH)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(80 * SCALE_WIDTH)
+            make.left.right.bottom.equalToSuperview()
         }
         
     }
@@ -119,11 +130,31 @@ extension MyDeciveViewController{
 }
 
 extension MyDeciveViewController{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return infoDataSource.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cellID = "DeviceID"
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellID)
+        if cell == nil {
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellID)
+        }
+        cell?.textLabel?.text = infoDataSource[indexPath.row]
+        //右侧箭头
+        cell?.accessoryType = .disclosureIndicator
+        //点击灰色
+        cell?.selectionStyle = .blue
+        return cell!
+        
+    }
+    // 设置cell高度
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 }

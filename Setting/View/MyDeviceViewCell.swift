@@ -49,7 +49,6 @@ class MyDeviceViewCell: UICollectionViewCell {
         contentView.addSubview(textLabel)
         contentView.addSubview(titleLabel)
         imageView.snp.makeConstraints { (make) in
-//            make.top.equalToSuperview()
             make.centerX.equalToSuperview()
             make.top.equalTo(10 * SCALE_WIDTH)
             make.width.equalTo(40 * SCALE_WIDTH)
