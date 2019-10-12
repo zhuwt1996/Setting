@@ -32,6 +32,22 @@ class SoundViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         return view
     }()
     
+    fileprivate lazy var selectBtn1: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "unselected"), for: .normal)
+        button.setImage(UIImage(named: "selected"), for: .selected)
+        button.addTarget(self, action: #selector(changeBtn1State), for: .touchUpInside)
+        return button
+    }()
+    
+    fileprivate lazy var selectBtn2: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "unselected"), for: .normal)
+        button.setImage(UIImage(named: "selected"), for: .selected)
+        button.addTarget(self, action: #selector(changeBtn2State), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,6 +68,13 @@ class SoundViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             make.bottom.left.right.equalToSuperview()
         }
     }
+    
+    @objc fileprivate func changeBtn1State(){
+        selectBtn1.isSelected = !selectBtn1.isSelected
+    }
+    @objc fileprivate func changeBtn2State(){
+        selectBtn2.isSelected = !selectBtn2.isSelected
+    }
 }
 
 extension SoundViewController{
@@ -71,21 +94,77 @@ extension SoundViewController{
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: cellID)
         }
-        switch indexPath.section {
-        case 0:
+        let sec = indexPath.section
+        let row = indexPath.row
+        if sec == 0{
             cell?.addSubview(muteView)
             muteView.snp.makeConstraints({(make) in
                 make.top.bottom.left.right.equalToSuperview()
             })
             cell?.selectionStyle = .none
-        default:
+        }else{
             let cells = dataSource[indexPath.section]
             cell?.textLabel?.text = cells?[indexPath.row]
             //右侧箭头
             cell?.accessoryType = .disclosureIndicator
             //点击灰色
             cell?.selectionStyle = .blue
+            if sec == 2{
+                if row == 0{
+                    cell?.addSubview(selectBtn1)
+                    selectBtn1.snp.makeConstraints({(make) in
+                        make.centerY.equalToSuperview()
+                        make.right.equalTo(-10 * SCALE_WIDTH)
+                        make.width.equalTo(85 * SCALE_WIDTH)
+                        make.height.equalTo(45 * SCALE_WIDTH)
+                    })
+                }else if row == 1{
+                    cell?.addSubview(selectBtn2)
+                    selectBtn2.snp.makeConstraints({(make) in
+                        make.centerY.equalToSuperview()
+                        make.right.equalTo(-10 * SCALE_WIDTH)
+                        make.width.equalTo(85 * SCALE_WIDTH)
+                        make.height.equalTo(45 * SCALE_WIDTH)
+                    })
+                }
+            }
         }
+        
+        
+//        switch indexPath.section {
+//            //声音
+//            case 0:
+//                cell?.addSubview(muteView)
+//                muteView.snp.makeConstraints({(make) in
+//                    make.top.bottom.left.right.equalToSuperview()
+//                })
+//                cell?.selectionStyle = .none
+//            //振动
+////            case 2:
+////                switch indexPath.row {
+////                     //响铃
+////                    case 0:
+////                       cell?.addSubview(selectBtn)
+////                       muteView.snp.makeConstraints({(make) in
+////                        make.top.bottom.equalToSuperview()
+////                        make.right.equalTo(-20 * SCALE_WIDTH)
+////                       })
+////                    //静音
+////                    case 1:
+////
+////                        break
+////                    default:
+////                        break
+////                }
+//        default:
+//            let cells = dataSource[indexPath.section]
+//            cell?.textLabel?.text = cells?[indexPath.row]
+//            //右侧箭头
+//            cell?.accessoryType = .disclosureIndicator
+//            //点击灰色
+//            cell?.selectionStyle = .blue
+//
+//        }
         
         return cell!
     }
