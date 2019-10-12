@@ -19,6 +19,7 @@
 		97AF3CEF2350648B00ADC688 /* MyDeviceLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3CEE2350648B00ADC688 /* MyDeviceLayout.swift */; };
 		97AF3CF12350675200ADC688 /* MyDeviceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3CF02350675200ADC688 /* MyDeviceViewCell.swift */; };
 		97AF3CF323508F2F00ADC688 /* MyDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3CF223508F2F00ADC688 /* MyDeviceCell.swift */; };
+		97AF3CF523509CEB00ADC688 /* MyDeviceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3CF423509CEB00ADC688 /* MyDeviceHeaderView.swift */; };
 		CDFEBB055128076B2E0ADCEF /* Pods_Setting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83464920C900A672CF1D6F17 /* Pods_Setting.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		97AF3CEE2350648B00ADC688 /* MyDeviceLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeviceLayout.swift; sourceTree = "<group>"; };
 		97AF3CF02350675200ADC688 /* MyDeviceViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeviceViewCell.swift; sourceTree = "<group>"; };
 		97AF3CF223508F2F00ADC688 /* MyDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeviceCell.swift; sourceTree = "<group>"; };
+		97AF3CF423509CEB00ADC688 /* MyDeviceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeviceHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				97AF3CEE2350648B00ADC688 /* MyDeviceLayout.swift */,
+				97AF3CF423509CEB00ADC688 /* MyDeviceHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			files = (
 				97AF3CEF2350648B00ADC688 /* MyDeviceLayout.swift in Sources */,
 				97AF3CEB23505A9000ADC688 /* MyDeciveViewController.swift in Sources */,
+				97AF3CF523509CEB00ADC688 /* MyDeviceHeaderView.swift in Sources */,
 				97AF3CF12350675200ADC688 /* MyDeviceViewCell.swift in Sources */,
 				97AF3CCA234F038200ADC688 /* SettingTableViewCell.swift in Sources */,
 				97AF3CED2350643500ADC688 /* AppGlobal.swift in Sources */,
