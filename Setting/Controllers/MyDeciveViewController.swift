@@ -56,7 +56,6 @@ class MyDeciveViewController: UIViewController,UICollectionViewDelegate,UICollec
         tableView.sectionFooterHeight = 0.0
         tableView.dataSource = self
         tableView.delegate = self
-//        tableView.backgroundColor = UIColor.red
         return tableView
     }()
     
@@ -81,8 +80,6 @@ class MyDeciveViewController: UIViewController,UICollectionViewDelegate,UICollec
     }
     
     func setupUI(){
-        
-        view.backgroundColor = UIColor.white
         
         view.addSubview(header)
         header.snp.makeConstraints { (make) in

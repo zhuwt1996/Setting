@@ -170,8 +170,7 @@ extension SettingViewController{
             return filteredCells.count
         }
 
-        let data = self.dataSource[section]
-        return data!.count
+        return self.dataSource[section]!.count
     }
     
     //返回cell
@@ -213,8 +212,16 @@ extension SettingViewController{
         case 1:
             switch indexPath.row{
             case 0:
-                //我的设备
+                //双卡和移动网络
                 break
+            default:
+                return
+            }
+        case 2:
+            switch indexPath.row{
+            case 3:
+                //声音和振动
+                self.navigationController?.pushViewController(SoundViewController(), animated: false)
             default:
                 return
             }
