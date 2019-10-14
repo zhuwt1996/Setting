@@ -56,8 +56,17 @@ class SoundViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         
         self.themeHeaders = ["声音","铃声","振动"]
         self.dataSource = [0:["静音/勿扰"],1:["电话铃声","短信铃声","日历铃声","来电秀","其他通知提醒"],2:["响铃时振动","静音时振动"]]
+      
+        UserDefaults.standard.register(defaults: ["s1V" : 0.5])
+        UserDefaults.standard.register(defaults: ["s2V" : 0.5])
+        UserDefaults.standard.register(defaults: ["s3V" : 0.5])
         
         setupUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        muteView.saveValue()
     }
 
     fileprivate func setupUI(){
@@ -129,42 +138,6 @@ extension SoundViewController{
                 }
             }
         }
-        
-        
-//        switch indexPath.section {
-//            //声音
-//            case 0:
-//                cell?.addSubview(muteView)
-//                muteView.snp.makeConstraints({(make) in
-//                    make.top.bottom.left.right.equalToSuperview()
-//                })
-//                cell?.selectionStyle = .none
-//            //振动
-////            case 2:
-////                switch indexPath.row {
-////                     //响铃
-////                    case 0:
-////                       cell?.addSubview(selectBtn)
-////                       muteView.snp.makeConstraints({(make) in
-////                        make.top.bottom.equalToSuperview()
-////                        make.right.equalTo(-20 * SCALE_WIDTH)
-////                       })
-////                    //静音
-////                    case 1:
-////
-////                        break
-////                    default:
-////                        break
-////                }
-//        default:
-//            let cells = dataSource[indexPath.section]
-//            cell?.textLabel?.text = cells?[indexPath.row]
-//            //右侧箭头
-//            cell?.accessoryType = .disclosureIndicator
-//            //点击灰色
-//            cell?.selectionStyle = .blue
-//
-//        }
         
         return cell!
     }

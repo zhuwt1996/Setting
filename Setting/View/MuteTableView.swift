@@ -10,6 +10,8 @@ import UIKit
 
 class MuteTableView: UIView {
 
+    var s1V : Float?
+
     lazy var title: UILabel = {
         let label = UILabel()
         label.text = "静音/勿扰"
@@ -23,19 +25,15 @@ class MuteTableView: UIView {
         return label
     }()
     
-    lazy var alarmImg: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "alarm")
-        
-        return imgView
-    }()
-    
+    //UISlider不灵敏：改变slider的高度即可
     lazy var slider1: UISlider = {
         let slider = UISlider()
         slider.center = self.center
         slider.minimumValue = 0
         slider.maximumValue = 1
-        slider.value = 0.5
+        slider.minimumValueImage = UIImage(named:"ring")  //左边图标
+        slider.setValue(UserDefaults.standard.float(forKey: "s1V"), animated: true)
+        slider.isContinuous = true
         return slider
     }()
     
@@ -46,19 +44,13 @@ class MuteTableView: UIView {
         return label
     }()
     
-    lazy var ringImg: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "ring")
-        
-        return imgView
-    }()
-    
     lazy var slider2: UISlider = {
         let slider = UISlider()
         slider.center = self.center
         slider.minimumValue = 0
         slider.maximumValue = 1
-        slider.value = 0.5
+        slider.value = UserDefaults.standard.float(forKey: "s2V")
+        slider.minimumValueImage = UIImage(named:"alarm")  //左边图标
         return slider
     }()
     
@@ -69,19 +61,13 @@ class MuteTableView: UIView {
         return label
     }()
     
-    lazy var mediaImg: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "media")
-        
-        return imgView
-    }()
-    
     lazy var slider3: UISlider = {
         let slider = UISlider()
         slider.center = self.center
         slider.minimumValue = 0  //最小值
         slider.maximumValue = 1  //最大值
-        slider.value = 0 //当前默认值
+        slider.value = UserDefaults.standard.float(forKey: "s3V")
+        slider.minimumValueImage = UIImage(named:"media")  //左边图标
         return slider
     }()
     
@@ -111,19 +97,13 @@ class MuteTableView: UIView {
             make.height.equalTo(10 * SCALE_WIDTH)
             make.width.equalTo(80 * SCALE_WIDTH)
         }
-        self.addSubview(ringImg)
-        ringImg.snp.makeConstraints { (make) in
-            make.top.equalTo(65 * SCALE_WIDTH)
-            make.left.equalTo(12 * SCALE_WIDTH)
-            make.height.equalTo(30 * SCALE_WIDTH)
-            make.width.equalTo(30 * SCALE_WIDTH)
-        }
+        
         self.addSubview(slider1)
         slider1.snp.makeConstraints { (make) in
             make.top.equalTo(80 * SCALE_WIDTH)
-            make.left.equalTo(40 * SCALE_WIDTH)
+            make.left.equalTo(12 * SCALE_WIDTH)
             make.right.equalTo(-40 * SCALE_WIDTH)
-            make.height.equalTo(1 * SCALE_WIDTH)
+            make.height.equalTo(10 * SCALE_WIDTH)
         }
         
         self.addSubview(ringTitle)
@@ -133,19 +113,13 @@ class MuteTableView: UIView {
             make.height.equalTo(10 * SCALE_WIDTH)
             make.width.equalTo(80 * SCALE_WIDTH)
         }
-        self.addSubview(alarmImg)
-        alarmImg.snp.makeConstraints { (make) in
-            make.top.equalTo(125 * SCALE_WIDTH)
-            make.left.equalTo(12 * SCALE_WIDTH)
-            make.height.equalTo(30 * SCALE_WIDTH)
-            make.width.equalTo(30 * SCALE_WIDTH)
-        }
+        
         self.addSubview(slider2)
         slider2.snp.makeConstraints { (make) in
             make.top.equalTo(140 * SCALE_WIDTH)
-            make.left.equalTo(40 * SCALE_WIDTH)
+            make.left.equalTo(12 * SCALE_WIDTH)
             make.right.equalTo(-40 * SCALE_WIDTH)
-            make.height.equalTo(1 * SCALE_WIDTH)
+            make.height.equalTo(10 * SCALE_WIDTH)
         }
         
         self.addSubview(mediaTitle)
@@ -155,22 +129,19 @@ class MuteTableView: UIView {
             make.height.equalTo(10 * SCALE_WIDTH)
             make.width.equalTo(80 * SCALE_WIDTH)
         }
-        self.addSubview(mediaImg)
-        mediaImg.snp.makeConstraints { (make) in
-            make.top.equalTo(185 * SCALE_WIDTH)
-            make.left.equalTo(12 * SCALE_WIDTH)
-            make.height.equalTo(30 * SCALE_WIDTH)
-            make.width.equalTo(30 * SCALE_WIDTH)
-        }
+        
         self.addSubview(slider3)
         slider3.snp.makeConstraints { (make) in
             make.top.equalTo(200 * SCALE_WIDTH)
-            make.left.equalTo(40 * SCALE_WIDTH)
+            make.left.equalTo(12 * SCALE_WIDTH)
             make.right.equalTo(-40 * SCALE_WIDTH)
-            make.height.equalTo(1 * SCALE_WIDTH)
+            make.height.equalTo(10 * SCALE_WIDTH)
         }
-        
-        
     }
-
+    
+    func saveValue(){
+        UserDefaults.standard.set(slider1.value, forKey: "s1V")
+        UserDefaults.standard.set(slider2.value, forKey: "s2V")
+        UserDefaults.standard.set(slider3.value, forKey: "s3V")
+    }
 }
