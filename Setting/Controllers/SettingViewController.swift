@@ -220,7 +220,11 @@ extension SettingViewController{
         case 2:
             switch indexPath.row{
             case 1:
+                //壁纸
                 self.navigationController?.pushViewController(WallPaperViewController(), animated: false)
+            case 2:
+                //个性主题
+                self.navigationController?.pushViewController(DiyThemeViewController(), animated: false)
             case 3:
                 //声音和振动
                 self.navigationController?.pushViewController(SoundViewController(), animated: false)

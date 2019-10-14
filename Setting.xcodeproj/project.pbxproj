@@ -25,6 +25,10 @@
 		97AF3D012354491400ADC688 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3CFF2354491400ADC688 /* ImageHelper.swift */; };
 		97AF3D022354491400ADC688 /* ImageVIewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3D002354491400ADC688 /* ImageVIewExtension.swift */; };
 		97AF3D0423544BBC00ADC688 /* SliderPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3D0323544BBC00ADC688 /* SliderPicViewController.swift */; };
+		97AF3D082354678400ADC688 /* DiyThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3D072354678400ADC688 /* DiyThemeViewController.swift */; };
+		97AF3D0A23546D6600ADC688 /* ThemeHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3D0923546D6600ADC688 /* ThemeHeaderViewCell.swift */; };
+		97AF3D0C23546D7A00ADC688 /* ThemeContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3D0B23546D7A00ADC688 /* ThemeContentViewCell.swift */; };
+		97AF3D0E2354702B00ADC688 /* ThemeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF3D0D2354702B00ADC688 /* ThemeLayout.swift */; };
 		CDFEBB055128076B2E0ADCEF /* Pods_Setting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83464920C900A672CF1D6F17 /* Pods_Setting.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +56,10 @@
 		97AF3CFF2354491400ADC688 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		97AF3D002354491400ADC688 /* ImageVIewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageVIewExtension.swift; sourceTree = "<group>"; };
 		97AF3D0323544BBC00ADC688 /* SliderPicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPicViewController.swift; sourceTree = "<group>"; };
+		97AF3D072354678400ADC688 /* DiyThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiyThemeViewController.swift; sourceTree = "<group>"; };
+		97AF3D0923546D6600ADC688 /* ThemeHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeHeaderViewCell.swift; sourceTree = "<group>"; };
+		97AF3D0B23546D7A00ADC688 /* ThemeContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeContentViewCell.swift; sourceTree = "<group>"; };
+		97AF3D0D2354702B00ADC688 /* ThemeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +133,7 @@
 				97AF3CF62351765900ADC688 /* SoundViewController.swift */,
 				97AF3CFC235418B500ADC688 /* WallPaperViewController.swift */,
 				97AF3D0323544BBC00ADC688 /* SliderPicViewController.swift */,
+				97AF3D072354678400ADC688 /* DiyThemeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -136,6 +145,9 @@
 				97AF3CC9234F038200ADC688 /* SettingTableViewCell.swift */,
 				97AF3CF423509CEB00ADC688 /* MyDeviceHeaderView.swift */,
 				97AF3CF823519F7E00ADC688 /* MuteTableView.swift */,
+				97AF3D0923546D6600ADC688 /* ThemeHeaderViewCell.swift */,
+				97AF3D0B23546D7A00ADC688 /* ThemeContentViewCell.swift */,
+				97AF3D0D2354702B00ADC688 /* ThemeLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97AF3CEB23505A9000ADC688 /* MyDeciveViewController.swift in Sources */,
+				97AF3D0A23546D6600ADC688 /* ThemeHeaderViewCell.swift in Sources */,
 				97AF3CF523509CEB00ADC688 /* MyDeviceHeaderView.swift in Sources */,
 				97AF3CF12350675200ADC688 /* MyDeviceViewCell.swift in Sources */,
 				97AF3CF923519F7E00ADC688 /* MuteTableView.swift in Sources */,
@@ -295,6 +308,9 @@
 				97AF3D012354491400ADC688 /* ImageHelper.swift in Sources */,
 				97AF3CF323508F2F00ADC688 /* MyDeviceCell.swift in Sources */,
 				97AF3CE7235014C100ADC688 /* SettingCell.swift in Sources */,
+				97AF3D0C23546D7A00ADC688 /* ThemeContentViewCell.swift in Sources */,
+				97AF3D0E2354702B00ADC688 /* ThemeLayout.swift in Sources */,
+				97AF3D082354678400ADC688 /* DiyThemeViewController.swift in Sources */,
 				97AF3CAE234ED9CF00ADC688 /* SettingViewController.swift in Sources */,
 				97AF3CFD235418B500ADC688 /* WallPaperViewController.swift in Sources */,
 			);

@@ -39,6 +39,7 @@ class SliderPicViewController: UIViewController,UIScrollViewDelegate {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         //获取并设置scrollerView尺寸
@@ -59,7 +60,6 @@ class SliderPicViewController: UIViewController,UIScrollViewDelegate {
         //设置自动滚动计时器
         self.configureAutoScrollTimer()
         
-        self.view.backgroundColor = UIColor.white
     }
     
     //设置scrollerView
@@ -123,7 +123,7 @@ class SliderPicViewController: UIViewController,UIScrollViewDelegate {
     //设置自动滚动计时器
     func configureAutoScrollTimer() {
         //设置一个定时器，每三秒钟滚动一次
-        autoScrollTimer = Timer.scheduledTimer(timeInterval: 3, target: self,
+        autoScrollTimer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                                selector: #selector(SliderPicViewController.letItScroll),
                                                userInfo: nil, repeats: true)
     }

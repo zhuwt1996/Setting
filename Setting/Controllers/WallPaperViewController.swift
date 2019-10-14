@@ -72,11 +72,13 @@ class WallPaperViewController: UIViewController,SliderPicViewControllerDelegate 
 
     fileprivate func setupUI(){
         //将图片轮播组件添加到当前视图
-        self.addChild(sliderPicVC)
+//        self.addChild(sliderPicVC)
         view.addSubview(sliderPicVC.view)
         sliderPicVC.view.snp.makeConstraints { (make) in
             make.top.equalTo(-48 * SCALE_WIDTH)
-            make.bottom.left.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.height.equalTo(SCREEN_HEIGHT/3-20)
+            
         }
         
     }
