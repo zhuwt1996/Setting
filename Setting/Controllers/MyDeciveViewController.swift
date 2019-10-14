@@ -27,7 +27,7 @@ class MyDeciveViewController: UIViewController,UICollectionViewDelegate,UICollec
         //水平行间距
         layout.minimumInteritemSpacing = 1 * SCALE_WIDTH
         //每个item的大小
-        layout.itemSize = CGSize(width: (SCREEN_WIDTH - 3)/3, height: (SCREEN_WIDTH - 3)/3)
+        layout.itemSize = CGSize(width: (SCREEN_WIDTH - 3)/3, height: (SCREEN_WIDTH - 3)/4)
         //设置距离上 左 下 右
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0,bottom: 0, right: 0)
         
@@ -85,18 +85,18 @@ class MyDeciveViewController: UIViewController,UICollectionViewDelegate,UICollec
         header.snp.makeConstraints { (make) in
             make.top.equalTo(-50 * SCALE_WIDTH)
             make.left.right.equalToSuperview()
-            make.height.equalTo(80 * SCALE_WIDTH)
+            make.height.equalTo(60 * SCALE_WIDTH)
         }
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
             make.top.equalTo(header.snp.bottom)
             make.left.right.equalToSuperview()
-            make.height.equalTo(250 * SCALE_WIDTH)
+            make.height.equalTo(187 * SCALE_WIDTH)
         }
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(collectionView.snp.bottom).offset(-1 * SCALE_WIDTH)
+            make.top.equalTo(collectionView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
         

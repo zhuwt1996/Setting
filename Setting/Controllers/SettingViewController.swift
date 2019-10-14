@@ -219,6 +219,8 @@ extension SettingViewController{
             }
         case 2:
             switch indexPath.row{
+            case 1:
+                self.navigationController?.pushViewController(WallPaperViewController(), animated: false)
             case 3:
                 //声音和振动
                 self.navigationController?.pushViewController(SoundViewController(), animated: false)
