@@ -17,7 +17,6 @@ import UIKit
     5、页控制器
  
 reference：https://www.hangge.com/blog/cache/detail_1314.html
- https://github.com/zhuwt1996/Setting/blob/master/Setting/Assets.xcassets/acml.imageset/acml.jpg
  */
 
 class WallPaperViewController: UIViewController,SliderPicViewControllerDelegate {
@@ -36,19 +35,23 @@ class WallPaperViewController: UIViewController,SliderPicViewControllerDelegate 
         //初始化图片轮播组件
         sliderPicVC = SliderPicViewController()
         sliderPicVC.delegate = self
-        sliderPicVC.view.frame = CGRect(x: 10, y: 40, width: SCREEN_WIDTH-20,
-                                          height: (SCREEN_WIDTH-20)/4*3);
+        sliderPicVC.view.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH,height: SCREEN_HEIGHT/3-20);
         
-        //将图片轮播组件添加到当前视图
-        self.addChild(sliderPicVC)
-        self.view.addSubview(sliderPicVC.view)
+        setupUI()
         
         //添加组件的点击事件
         let tap = UITapGestureRecognizer(target: self,
                                          action: #selector(WallPaperViewController.handleTapAction(_:)))
         sliderPicVC.view.addGestureRecognizer(tap)
         
-        setupUI()
+        let rightBarButton = UIBarButtonItem(title: "刷新数据", style: .plain, target: self, action: #selector(refreshData))
+        navigationItem.rightBarButtonItems = [rightBarButton]
+    }
+    
+    //刷新数据
+    @objc func refreshData() {
+        images = ["laker","dgyh","heat","thunder","cav"]
+        sliderPicVC.reloadData()
     }
     
     //点击事件响应
@@ -68,6 +71,13 @@ class WallPaperViewController: UIViewController,SliderPicViewControllerDelegate 
     }
 
     fileprivate func setupUI(){
+        //将图片轮播组件添加到当前视图
+        self.addChild(sliderPicVC)
+        view.addSubview(sliderPicVC.view)
+        sliderPicVC.view.snp.makeConstraints { (make) in
+            make.top.equalTo(-48 * SCALE_WIDTH)
+            make.bottom.left.right.equalToSuperview()
+        }
         
     }
 }
@@ -78,7 +88,7 @@ extension WallPaperViewController{
     }
     
     func galleryScrollerViewSize() -> CGSize {
-        return CGSize(width: SCREEN_WIDTH-20, height: (SCREEN_WIDTH-20)/4*3)
+        return CGSize(width: SCREEN_WIDTH, height: SCREEN_HEIGHT/3-20)
     }
     
 }

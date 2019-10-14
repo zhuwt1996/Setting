@@ -59,7 +59,7 @@ class SliderPicViewController: UIViewController,UIScrollViewDelegate {
         //设置自动滚动计时器
         self.configureAutoScrollTimer()
         
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor.white
     }
     
     //设置scrollerView
@@ -138,47 +138,23 @@ class SliderPicViewController: UIViewController,UIScrollViewDelegate {
     func resetImageViewSource() {
         //当前显示的是第一张图片
         if self.currentIndex == 0 {
-            
-//            self.leftImageView?.imageFromURL(self.dataSource!.last!,
-//                                             placeholder: placeholderImage)
-//            self.middleImageView?.imageFromURL(self.dataSource!.first!,
-//                                               placeholder: placeholderImage)
-//            self.leftImageView?.image = UIImage(contentsOfFile: self.dataSource!.last!)
-//            self.middleImageView?.image = UIImage(contentsOfFile: self.dataSource!.first!)
+ 
             self.leftImageView?.image = UIImage(named: self.dataSource!.last!)
             self.middleImageView?.image = UIImage(named: self.dataSource!.first!)
             self.rightImageView?.image = UIImage(named: self.dataSource!.first!)
             let rightImageIndex = (self.dataSource?.count)!>1 ? 1 : 0 //保护
-//            self.rightImageView?.imageFromURL(self.dataSource![rightImageIndex],
-//                                              placeholder: placeholderImage)
-//            self.middleImageView?.image = UIImage(contentsOfFile: self.dataSource![rightImageIndex])
             self.rightImageView?.image = UIImage(named: self.dataSource![rightImageIndex])
         }
             //当前显示的是最后一张图片
         else if self.currentIndex == (self.dataSource?.count)! - 1 {
-//            self.leftImageView?.image = UIImage(contentsOfFile: self.dataSource![self.currentIndex-1])
-//            self.middleImageView?.image = UIImage(contentsOfFile: self.dataSource!.last!)
             self.leftImageView?.image = UIImage(named: self.dataSource![self.currentIndex-1])
             self.middleImageView?.image = UIImage(named: self.dataSource!.last!)
-            self.rightImageView?.image = UIImage(named: self.dataSource!.first!)
-//            self.leftImageView?.imageFromURL(self.dataSource![self.currentIndex-1],
-//                                             placeholder: placeholderImage)
-//            self.middleImageView?.imageFromURL(self.dataSource!.last!,
-//                                               placeholder: placeholderImage)
-//            self.rightImageView?.imageFromURL(self.dataSource!.first!,
-//                                              placeholder: placeholderImage)
-        }
+            self.rightImageView?.image = UIImage(named: self.dataSource!.first!)        }
             //其他情况
         else{
             self.leftImageView?.image = UIImage(named: self.dataSource![self.currentIndex-1])
             self.middleImageView?.image = UIImage(named: self.dataSource![self.currentIndex])
             self.rightImageView?.image = UIImage(named: self.dataSource![self.currentIndex+1])
-//            self.leftImageView?.imageFromURL(self.dataSource![self.currentIndex-1],
-//                                             placeholder: placeholderImage)
-//            self.middleImageView?.imageFromURL(self.dataSource![self.currentIndex],
-//                                               placeholder: placeholderImage)
-//            self.rightImageView?.imageFromURL(self.dataSource![self.currentIndex+1],
-//                                              placeholder: placeholderImage)
         }
     }
     
