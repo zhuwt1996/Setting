@@ -149,7 +149,9 @@ class SliderPicViewController: UIViewController,UIScrollViewDelegate {
         else if self.currentIndex == (self.dataSource?.count)! - 1 {
             self.leftImageView?.image = UIImage(named: self.dataSource![self.currentIndex-1])
             self.middleImageView?.image = UIImage(named: self.dataSource!.last!)
-            self.rightImageView?.image = UIImage(named: self.dataSource!.first!)        }
+            self.rightImageView?.image = UIImage(named: self.dataSource!.first!)
+            
+        }
             //其他情况
         else{
             self.leftImageView?.image = UIImage(named: self.dataSource![self.currentIndex-1])
